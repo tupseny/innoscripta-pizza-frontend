@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './App.scss';
+import {Menu} from "./components/menu";
+import {NavbarPizza} from "./components/navigation";
+import {Container} from "react-bootstrap";
+import {AlertContext} from "./redux/context";
+import {PizzaAlert} from "./components/other/alert";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const alertContext = useState({success: '', error: ''});
+
+    return (
+        <AlertContext.Provider value={alertContext}>
+            <Container>
+                <NavbarPizza/>
+                <Menu/>
+                <PizzaAlert timeout={3000}/>
+            </Container>
+        </AlertContext.Provider>
+    );
 }
 
 export default App;
