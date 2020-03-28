@@ -1,6 +1,7 @@
 import React from "react";
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import "./navbar.scss";
+import {CONFIG} from "../../helpers/config"
 
 import $ from 'jquery';
 
@@ -13,15 +14,14 @@ export const NavbarPizza = () => {
 
     const config = {
         brand: {
-            name: 'pizza',
-            logo: '',
+            name: CONFIG.title,
+            logo: CONFIG.urls.logo,
         },
-        toggle_hint: 'Toggle navigation',
         menu: 'menu',
         nav: {
-            home: {name: 'home', href: '/'},
-            login: {name: 'Log in', href: '/login'},
-            signup: {name: 'Sign up', href: '/signup'},
+            home: {name: 'home', href: CONFIG.paths.home},
+            login: {name: 'Log in', href: CONFIG.paths.login},
+            signup: {name: 'Sign up', href: CONFIG.paths.sigup},
         },
     };
 
@@ -46,7 +46,7 @@ export const NavbarPizza = () => {
                         let html;
                         if (index === 0) {
                             html =
-                                <div>
+                                <div key={index}>
                                     <NavDropdown.Item href={item.href} className={'text-danger'}>
                                         {item.name}
                                     </NavDropdown.Item>
@@ -54,7 +54,7 @@ export const NavbarPizza = () => {
                                 </div>
                         } else {
                             html =
-                                <NavDropdown.Item href={item.href}>
+                                <NavDropdown.Item key={index} href={item.href}>
                                     {item.name}
                                 </NavDropdown.Item>
                         }
@@ -90,28 +90,25 @@ export const NavbarPizza = () => {
     return renderCollapsibleNavbar();
 };
 
-$(window).scroll(function(){
-    const scroll = $(window).scrollTop();
-    if(scroll < 400){
-        $('.navbar-tiny').removeClass('navbar-tiny');
-    }else{
-        $('.navbar-main').addClass('navbar-tiny');
-    }
-});
-
 $(document).ready(function(){
-    const homePath = '/';
-    const loginPath = '/login';
+    const homePath = CONFIG.paths.home;
 
-    const path = window.location.pathname
+    const path = window.location.pathname;
+
+    $(window).scroll(function(){
+        const scroll = $(window).scrollTop();
+        if(scroll < 400 && path === homePath){
+            $('.navbar-tiny').removeClass('navbar-tiny');
+        }else{
+            $('.navbar-main').addClass('navbar-tiny');
+        }
+    });
+
     switch (path){
         case homePath:
             $('.navbar-main').addClass('navbar-transporent');
             break;
-        case loginPath:
-            $('.navbar-main').addClass('navbar-tiny');
-            break;
         default:
-            break;
+            $('.navbar-main').addClass('navbar-tiny');
     }
 });
