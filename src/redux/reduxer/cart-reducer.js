@@ -7,7 +7,7 @@ export const actions = {
     remove: 'REMOVE',
 };
 
-export const menuReducer = (state, action) => {
+export const cartReducer = (state, action) => {
     const {cart} = state;
 
     switch (action.type) {
