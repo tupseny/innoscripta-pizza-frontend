@@ -1,1 +1,1 @@
-export {CartBrowser as Cart} from './cart-browser.js'
+export {CartPage as Cart} from './cart-browser.js'

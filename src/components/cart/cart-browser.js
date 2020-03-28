@@ -4,20 +4,49 @@ import {Dollar} from "../other";
 import {Trash} from "bootstrap-icons-react";
 import {CartContext} from "../../redux/context";
 import {actions} from "../../redux/reduxer/cart-reducer";
+import {Order} from "./order-modal";
 
 const FEE = 5;
 
-export const CartBrowser = () => {
+export const CartPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [cartContext, cartDispatch] = useContext(CartContext);
-    const [isLoading, setIsLoding] = useState(false);
 
-    function calcTotalPrice() {
-        return cartContext.cart.reduce((accum, val) => accum + val.price, 0);
-    }
+    const totalPrice = cartContext.cart.reduce((accum, val) => accum + val.price, 0);
 
-    const onSubmitClickHandler = () => {
+    const onSubmitClickHandler = e => {
+        e.preventDefault();
 
+        console.log('clicked');
+        setIsLoading(true);
+        setShowModal(true);
     };
+
+    const onOrderCloseHandler = e => {
+        setIsLoading(false);
+        setShowModal(false);
+    };
+
+    return <div>
+        <CartBrowser
+            onSubmitClickHandler={onSubmitClickHandler}
+            isLoading={isLoading}
+            cartContext={cartContext}
+            cartDispatch={cartDispatch}
+            total={totalPrice}
+        />
+
+        <Order
+            show={showModal}
+            onClose={onOrderCloseHandler}
+            totalPrice={totalPrice + FEE}
+        />
+    </div>
+};
+
+const CartBrowser = (props) => {
+    const {onSubmitClickHandler, isLoading, cartContext, cartDispatch, total} = props;
 
     const onDeleteHandler = id => {
         cartDispatch({
@@ -31,7 +60,7 @@ export const CartBrowser = () => {
 
     const renderCartSummary = () =>
         <CartSummary
-            total={calcTotalPrice()}
+            total={total}
             deliveryFee={FEE}
             onClickHandler={onSubmitClickHandler}
             isLoading={isLoading}
@@ -46,7 +75,6 @@ export const CartBrowser = () => {
                 </div>
                 : <h1 className={'display-4 text-center'}>There are no items in cart</h1>
         }
-
     </Container>
 };
 
