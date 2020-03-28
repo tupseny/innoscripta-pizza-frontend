@@ -1,18 +1,28 @@
 import React from "react";
 
-export const Rubble = (props) => {
-    const symbol = "₽";
-    return <Currency value={props.children} symbol={symbol}/>
+export const CURRENCY = {
+  dollar: '$',
+  euro: '€',
+};
+
+export const Dollar = (props) => {
+    return <Currency children={props.children} prefix={CURRENCY.dollar}/>
+};
+
+export const Euro = (props) => {
+    return <Currency children={props.children} suffix={CURRENCY.euro}/>
 };
 
 const Currency = (props) => {
-    if (isNaN(props.value)){return <div>not number</div>}
+    const {children, prefix, suffix} = props;
 
-    const prefix = props.symbol ?? '';
-    let val = props.value ?? 0;
+    if (isNaN(children)){return <div>NaN</div>}
+
+    let val = children;
 
     val = Math.round(val);
-    val += prefix;
+    val = prefix ? prefix + val : val;
+    val += suffix ? suffix : '';
 
-    return <span className={'text-bold'}>{val}</span>;
+    return <span>{val}</span>;
 };

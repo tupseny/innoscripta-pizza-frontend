@@ -1,1 +1,1 @@
-export {Rubble} from './currency'
+export {Dollar, Euro} from './currency'
