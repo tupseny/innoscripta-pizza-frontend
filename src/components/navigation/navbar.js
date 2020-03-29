@@ -1,11 +1,15 @@
-import React from "react";
-import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import React, {useContext} from "react";
+import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import "./navbar.scss";
 import {CONFIG} from "../../helpers/config"
 
 import $ from 'jquery';
+import {AuthService} from "../../services/auth-service";
+import {UserContext} from "../../redux/context";
 
 export const NavbarPizza = () => {
+    const [user, setUser] = useContext(UserContext);
+
     const menu_categories = [
         {name: 'Pizza', href: '#pizza-category'},
         {name: 'Drinks', href: '#drinks-category'},
@@ -22,10 +26,16 @@ export const NavbarPizza = () => {
             home: {name: 'home', href: CONFIG.paths.home},
             login: {name: 'Log in', href: CONFIG.paths.login},
             signup: {name: 'Sign up', href: CONFIG.paths.sigup},
+            signout: {name: 'Sign Out'}
         },
     };
 
-    const renderCollapsibleNavbar = () =>{
+    const handleSignout = () => {
+        setUser({});
+        AuthService.logout();
+    };
+
+    const renderCollapsibleNavbar = () => {
         const renderBrand = () =>
             <Navbar.Brand href={config.nav.home.href}>
                 <img
@@ -71,9 +81,15 @@ export const NavbarPizza = () => {
 
         const renderRightNav = () =>
             <Nav>
-                <Nav.Link href={config.nav.login.href} className={'login'}>{config.nav.login.name}</Nav.Link>
-                <Nav.Link href={config.nav.signup.href} className={'signup'}>{config.nav.signup.name}</Nav.Link>
+                {user.api_token
+                    ? <Button className={'signout'}
+                              onClick={handleSignout}>{config.nav.signout.name}</Button>
+                    : <><Nav.Link href={config.nav.login.href} className={'login'}>{config.nav.login.name}</Nav.Link>
+                        <Nav.Link href={config.nav.signup.href} className={'signup'}>{config.nav.signup.name}</Nav.Link>
+                    </>
+                }
             </Nav>;
+
 
         return <Navbar expand={"md"} className={'navbar-main'}>
             {renderBrand()}
@@ -90,21 +106,21 @@ export const NavbarPizza = () => {
     return renderCollapsibleNavbar();
 };
 
-$(document).ready(function(){
+$(document).ready(function () {
     const homePath = CONFIG.paths.home;
 
     const path = window.location.pathname;
 
-    $(window).scroll(function(){
+    $(window).scroll(function () {
         const scroll = $(window).scrollTop();
-        if(scroll < 400 && path === homePath){
+        if (scroll < 400 && path === homePath) {
             $('.navbar-tiny').removeClass('navbar-tiny');
-        }else{
+        } else {
             $('.navbar-main').addClass('navbar-tiny');
         }
     });
 
-    switch (path){
+    switch (path) {
         case homePath:
             $('.navbar-main').addClass('navbar-transporent');
             break;
