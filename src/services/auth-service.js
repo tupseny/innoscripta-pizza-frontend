@@ -4,7 +4,13 @@ export class AuthService extends ApiService {
     static register(data, successCallback, errorCallback) {
         const path = '/register';
 
-        this.postRequest(path, data, successCallback, errorCallback);
+        this.postApiRequest(path, data, successCallback, errorCallback);
+    }
+
+    static authenticate(data, successCallback, errorCallback){
+        const path = '/login';
+
+        this.postApiRequest(path, data, successCallback, errorCallback);
     }
 
     static saveToken(token) {
@@ -15,7 +21,9 @@ export class AuthService extends ApiService {
         return localStorage.getItem('token');
     }
 
-    static isLogged() {
-        return !!this.getToken();
+    static logout(){
+        const path = '/logout';
+        this.postApiRequest(path);
+        localStorage.removeItem('token');
     }
 }
