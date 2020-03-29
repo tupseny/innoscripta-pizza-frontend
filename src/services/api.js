@@ -1,9 +1,9 @@
-export class ApiService {
-    static api = '/api';
+const API = '/api';
 
+export class ApiService {
     static _apiRequest(path, method, data, headers, successCallback, errorCallback) {
         const url = API + path;
-        const _headers = {'Accept': 'application/json'};
+        const _headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
 
         data = data && (typeof data === 'string' ? data : JSON.stringify(data));
 
