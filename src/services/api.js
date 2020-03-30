@@ -20,7 +20,10 @@ export class ApiService {
         };
 
         fetch(path, options)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw res;
+                return res.json();
+            })
             .then(successCallback)
             .catch(errorCallback);
     }

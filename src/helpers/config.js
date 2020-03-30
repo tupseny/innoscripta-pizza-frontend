@@ -7,6 +7,7 @@ export const CONFIG = {
     paths: {
         home: '/',
         login: '/login',
-        sigup: '/signup'
+        sigup: '/signup',
+        cart: '/cart'
     }
 };
