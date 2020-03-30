@@ -2,9 +2,10 @@ import {Button, Col, Container, ListGroup, Row, Spinner, Table} from "react-boot
 import React, {useContext, useState} from "react";
 import {Dollar} from "../other";
 import {Trash} from "bootstrap-icons-react";
-import {CartContext} from "../../redux/context";
+import {AlertContext, CartContext} from "../../redux/context";
 import {actions} from "../../redux/reduxer/cart-reducer";
 import {Order} from "./order-modal";
+import {CartService} from "../../services/cart-service";
 
 const FEE = 5;
 
@@ -12,19 +13,44 @@ export const CartPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [cartContext, cartDispatch] = useContext(CartContext);
+    const setAlert = useContext(AlertContext)[1];
 
     const totalPrice = cartContext.cart.reduce((accum, val) => accum + val.price, 0);
 
     const onSubmitClickHandler = e => {
         e.preventDefault();
 
-        console.log('clicked');
         setIsLoading(true);
         setShowModal(true);
     };
 
     const onOrderCloseHandler = e => {
-        setIsLoading(false);
+        let btnName;
+        if (e){
+            e.persist();
+            btnName = e.target.name;
+        }
+
+        const handleError = err => {
+            setAlert({error: err.toString()});
+            console.log(err);
+            setIsLoading(false);
+        };
+
+        const handleSuccess = data => {
+            console.log(data);
+            cartDispatch({type: actions.clean});
+            setAlert('You order is cooking now...');
+            setIsLoading(false);
+        };
+
+        if (btnName === 'order') {
+            CartService.makeOrder(cartContext.cart, handleSuccess, handleError)
+        }else{
+            setIsLoading(false);
+        }
+
+
         setShowModal(false);
     };
 

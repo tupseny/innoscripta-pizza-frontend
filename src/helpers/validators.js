@@ -4,7 +4,7 @@ export class Validators {
     }
 
     static phone(val) {
-        const regExp = /^[\s()+-]*([0-9][\s()+-]*){6,20}$/;
-        return !!val.match(regExp) || val.length === 0;
+        const regExp = /^[\s()+-]*?([0-9][\s()+-]*){6,20}$/;
+        return !!val.match(regExp) || val.length !== 0;
     }
 }

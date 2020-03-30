@@ -16,18 +16,17 @@ export const Order = props => {
 
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
-    const [validForm, setValidForm] = useState(false);
+    const [validAddress, setValidAddress] = useState(false);
+    const [validPhone, setValidPhone] = useState(false);
 
     const onChangeAddress = e => {
         e.persist();
-        e.target.addClass('invalid');
         const val = e.target.value;
 
         if (Validators.address(val)){
-            setValidForm(true);
+            setValidAddress(true);
         }else{
-            setValidForm(false);
-            console.log('error validation')
+            setValidAddress(false);
         }
 
         setAddress(val);
@@ -35,17 +34,15 @@ export const Order = props => {
 
     const onChangePhone = e => {
         e.persist();
-
         const val = e.target.value;
 
-        if (Validators.address(val)){
-            setPhone(val);
-            setValidForm(true);
+        if (Validators.phone(val)){
+            setValidPhone(true);
         }else{
-            setValidForm(false);
-            console.log('error validation')
+            setValidPhone(false);
         }
 
+        setPhone(val);
     };
 
     const renderBody = () => <Form>
@@ -76,7 +73,7 @@ export const Order = props => {
             {renderBody()}
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="primary" onClick={onClose} name={'order'} disabled={!validForm} className={''}>Make an order</Button>
+            <Button variant="primary" onClick={onClose} name={'order'} disabled={!(validAddress&&validPhone)} className={''}>Make an order</Button>
             <Button variant="outline-secondary" onClick={onClose} name={'cancel'} className={''}>Close</Button>
         </Modal.Footer>
     </Modal>

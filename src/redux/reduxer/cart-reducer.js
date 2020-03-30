@@ -5,6 +5,7 @@ export const initializer = () => {
 export const actions = {
     updateAmount: 'UPDATE',
     remove: 'REMOVE',
+    clean: 'CLEAN',
 };
 
 export const cartReducer = (state, action) => {
@@ -15,7 +16,10 @@ export const cartReducer = (state, action) => {
             return genNewState({cart: addToCart(action.item, cart)});
         case actions.remove:
             const id = action.item.id;
-            return genNewState({cart: state.cart.filter((item) => item.id !== id)});
+            const newState = genNewState({cart: removeFromCart(id, cart)});
+            return newState;
+        case actions.clean:
+            return {cart: []};
         default:
             throw new Error('Not allowed action')
     }
@@ -25,6 +29,10 @@ export const cartReducer = (state, action) => {
         return Object.assign(stateCopy, obj);
     }
 };
+
+function removeFromCart(id, cart) {
+    return cart.filter((item) => item.id !== id);
+}
 
 function addToCart(item, cart) {
     const {id, amount} = item;
