@@ -179,9 +179,9 @@ const MenuItem = (props) => {
     };
 
     const renderAddBtn = () =>
-        <btn className={'add-btn text-center text-danger icon-btn'} onClick={onAddClick}>
+        <button className={'add-btn text-center text-danger icon-btn'} onClick={onAddClick}>
             {isInCart ? <PlusSquareFill/> : <PlusSquare/>}
-        </btn>;
+        </button>;
 
     return <Card className={'menu-item d-flex flex-column align-items-center'}>
         <Card.Img loading={"lazy"} src={image} width={imgWidth}/>
