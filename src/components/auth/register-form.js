@@ -2,7 +2,7 @@ import {PersonPlus} from "bootstrap-icons-react";
 import React, {useContext, useState} from "react";
 
 import './register.scss';
-import {Button, Form, FormControl, FormGroup} from "react-bootstrap";
+import {Button, Form, FormControl, FormGroup, Spinner} from "react-bootstrap";
 import {useForm} from "../../hooks/useForm";
 import {RegisterValidator} from "../../validators";
 import {AuthService} from "../../services/auth-service";
@@ -15,9 +15,13 @@ const LOGIN = 'You already have an account? Login here.';
 
 export const RegisterPage = () => {
     const setAlert = useContext(AlertContext)[1];
+    const [loading, setLoading] = useState(false);
 
     const register = (values) => {
+        setLoading(true);
+
         const successCallback = data => {
+            setLoading(false);
             console.log(data);
 
             if (data.errors)
@@ -43,11 +47,11 @@ export const RegisterPage = () => {
         AuthService.register(data, successCallback, errorCallback);
     };
 
-    return <RegisterFormBrowser loginUrl={CONFIG.paths.login} handleRegister={register}/>
+    return <RegisterFormBrowser loginUrl={CONFIG.paths.login} handleRegister={register} loading={loading}/>
 };
 
 const RegisterFormBrowser = (props) => {
-    const {loginUrl, handleRegister} = props;
+    const {loginUrl, handleRegister, loading} = props;
 
     const [validated, setValidated] = useState(false);
     const {errors, values, handleChange, handleSubmit} = useForm(handleRegister, RegisterValidator);
@@ -85,7 +89,8 @@ const RegisterFormBrowser = (props) => {
                         don't match</FormControl.Feedback>
                 </FormGroup>
                 <FormGroup>
-                    <Button block type="submit">{SUBMIT_BUT}</Button>
+                    <Button block type="submit" disabled={loading}>{loading ?
+                        <Spinner animation={"grow"} variant={"warning"}/> : SUBMIT_BUT}</Button>
                 </FormGroup>
                 <a className="already" href={loginUrl}>{LOGIN}</a>
             </Form>

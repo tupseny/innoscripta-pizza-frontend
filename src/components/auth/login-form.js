@@ -2,9 +2,8 @@ import React, {useContext, useState} from "react";
 import {Lock} from "bootstrap-icons-react";
 
 import './login.scss';
-import {Button, Form, FormGroup} from "react-bootstrap";
+import {Button, Form, FormGroup, Spinner} from "react-bootstrap";
 import {useForm} from "../../hooks/useForm";
-import {RegisterValidator} from "../../validators";
 import LoginValidator from "../../validators/login-validator";
 import {AuthService} from "../../services/auth-service";
 import {AlertContext, UserContext} from "../../redux/context";
@@ -14,6 +13,7 @@ const LOGIN = 'Log in';
 export const LoginPage = () => {
     const setAlert = useContext(AlertContext)[1];
     const setUser = useContext(UserContext)[1];
+    const [loading, setLoading] = useState(false);
 
     const login = (values) => {
         const data = {
@@ -21,25 +21,29 @@ export const LoginPage = () => {
             password: values.password,
         };
 
+        setLoading(true);
+
         const successCallback = (data) => {
-            console.log(data);
-            if (data.api_token) {
-                AuthService.saveToken(data.api_token);
-                setUser(data);
+            const user = data.user;
+            setLoading(false);
+            console.log(user);
+            if (user?.api_token) {
+                AuthService.saveToken(user.api_token);
+                setUser(user);
                 setAlert({'success': 'Successfully logged in'});
             } else {
                 setAlert({'error': 'Bad credentials'});
             }
         };
 
-        AuthService.authenticate(data, successCallback, (err) => console.log);
+        AuthService.authenticate(data, successCallback, (err) => console.error(err));
     };
 
-    return <LoginBrowser handleLogin={login}/>;
+    return <LoginBrowser handleLogin={login} loading={loading}/>;
 };
 
 const LoginBrowser = (props) => {
-    const {handleLogin} = props;
+    const {handleLogin, loading} = props;
     const {values, handleChange, handleSubmit} = useForm(handleLogin, LoginValidator);
     const [validated, setValidated] = useState(false);
 
@@ -66,7 +70,8 @@ const LoginBrowser = (props) => {
                               name="password" placeholder="Password"/>
             </FormGroup>
             <FormGroup>
-                <Button block type="submit">{LOGIN}</Button>
+                <Button block disabled={loading} type="submit">{loading ?
+                    <Spinner animation={"grow"} variant={'warning'}/> : LOGIN}</Button>
             </FormGroup>
         </Form>
     </div>
