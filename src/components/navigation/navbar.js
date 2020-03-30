@@ -6,6 +6,7 @@ import {CONFIG} from "../../helpers/config"
 import $ from 'jquery';
 import {AuthService} from "../../services/auth-service";
 import {UserContext} from "../../redux/context";
+import {UserService} from "../../services/user-service";
 
 export const NavbarPizza = () => {
     const [user, setUser] = useContext(UserContext);
@@ -24,6 +25,7 @@ export const NavbarPizza = () => {
         menu: 'menu',
         nav: {
             home: {name: 'home', href: CONFIG.paths.home},
+            cart: {name: 'cart', href: CONFIG.paths.cart},
             login: {name: 'Log in', href: CONFIG.paths.login},
             signup: {name: 'Sign up', href: CONFIG.paths.sigup},
             signout: {name: 'Sign Out'}
@@ -50,32 +52,37 @@ export const NavbarPizza = () => {
             </Navbar.Brand>;
 
         const renderLeftNav = () => {
-            const renderNavDropdown = () =>
-                <NavDropdown title={config.menu}>
-                    {menu_categories.map((item, index) => {
-                        let html;
-                        if (index === 0) {
-                            html =
-                                <div key={index}>
-                                    <NavDropdown.Item href={item.href} className={'text-danger'}>
-                                        {item.name}
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider/>
-                                </div>
-                        } else {
-                            html =
-                                <NavDropdown.Item key={index} href={item.href}>
-                                    {item.name}
-                                </NavDropdown.Item>
-                        }
-
-                        return html;
-                    })}
-                </NavDropdown>;
+            // const renderNavDropdown = () =>
+                // <NavDropdown title={config.menu}>
+                //     {menu_categories.map((item, index) => {
+                //         let html;
+                //         if (index === 0) {
+                //             html =
+                //                 <div key={index}>
+                //                     <NavDropdown.Item href={item.href} className={'text-danger'}>
+                //                         {item.name}
+                //                     </NavDropdown.Item>
+                //                     <NavDropdown.Divider/>
+                //                 </div>
+                //         } else {
+                //             html =
+                //                 <NavDropdown.Item key={index} href={item.href}>
+                //                     {item.name}
+                //                 </NavDropdown.Item>
+                //         }
+                //
+                //         return html;
+                //     })}
+                // </NavDropdown>;
 
             return <Nav className={'mr-auto text-uppercase'}>
-                <Nav.Link href={config.nav.home.href}>{config.nav.home.name}</Nav.Link>
-                {renderNavDropdown()}
+                <Link to={config.nav.home.href}>
+                    <Nav.Link>{config.nav.home.name}</Nav.Link>
+                </Link>
+                <Link to={config.nav.cart.href}>
+                    <Nav.Link>{config.nav.cart.name}</Nav.Link>
+                </Link>
+                {/*{renderNavDropdown()}*/}
             </Nav>;
         };
 
