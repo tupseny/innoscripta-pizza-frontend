@@ -25,7 +25,7 @@ export const MenuBrowser = () => {
     //Get items from cache if exist
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem(GROUPS_KEY));
-        if (Object.keys(items).length > 0) {
+        if (items && Object.keys(items).length > 0) {
             setItems(items);
             setIsLoaded(true)
         }
@@ -141,7 +141,7 @@ const MenuGroupBody = (props) => {
 
     return items ? <Row>
         {items.map((item) =>
-            <Col xs={4} className={'menu-item-container'} key={item.id}>
+            <Col className={'menu-item-container'} key={item.id}>
                 <MenuItem image={category.toLowerCase() + '_' + item.name.toLowerCase() + '.png'} category={category} id={item.id} name={item.name} price={item.price}/>
             </Col>
         )}
