@@ -8,25 +8,31 @@ import {PizzaAlert} from "./components/other/alert";
 import {AppContext} from "./components/app-with-context";
 import {Register, Login} from "./components/auth/";
 import {InitApp} from "./components/init-app";
-import {Footer} from "./components/navigation/footer/footer";
-import {Redirect, Route, Switch, WithRouter} from 'react-router';
+import {BrowserRouter} from "react-router-dom";
+import {Redirect, Route} from "react-router";
+import {CONFIG} from "./helpers/config";
+import {PizzaFooter} from "./components/navigation/footer/footer";
+import {OrderHistory} from "./components/profile/order-history";
+import {Home} from "./components/home";
 
 function App() {
     return (
-        <AppContext>
+        <BrowserRouter>
+            <AppContext>
                 <InitApp/>
                 <NavbarPizza/>
-                <Switch>
-                    <Route path={'/menu'} component={Menu}/>
-                    <Route path={'/login'} component={Login}/>
-                    <Route path={'/register'} component={Register}/>
-                    <Route path={'/cart'} component={Cart}/>
-                    <Redirect to={'/home'} from={'/'}/>
-                </Switch>
+                <Route path={CONFIG.paths.home} component={Home}/>
+                <Route path={CONFIG.paths.menu} component={Menu}/>
+                <Route path={CONFIG.paths.login} component={Login}/>
+                <Route path={CONFIG.paths.signup} component={Register}/>
+                <Route path={CONFIG.paths.cart} component={Cart}/>
+                <Route path={CONFIG.paths.history} component={OrderHistory}/>
+                <Redirect to={'/home'} from={'/'}/>
                 <PizzaAlert timeout={3000}/>
-                <Footer/>
-        </AppContext>
+                <PizzaFooter/>
+            </AppContext>
+        </BrowserRouter>
     );
 }
 
-export default WithRouter(App);
+export default App;

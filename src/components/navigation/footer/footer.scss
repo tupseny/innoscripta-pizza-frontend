@@ -1,7 +1,11 @@
+@import "~bootswatch/dist/journal/variables";
+
 .footer-basic {
   padding: 40px 0;
-  background-color: #fff9d9;
-  color: #4b4c4d;
+  background-color: $light;
+  border-top-width: 3px;
+  border-top-style: dotted;
+  border-top-color: transparentize($primary, 0.6);
 }
 
 .footer-basic ul {
@@ -54,7 +58,7 @@
   margin-top: 15px;
   text-align: center;
   font-size: 13px;
-  color: #aaa;
+  color: $primary;
   margin-bottom: 0;
 }
 

@@ -1,13 +1,15 @@
 import {Button, Col, Container, ListGroup, Row, Spinner, Table} from "react-bootstrap";
-import React, {useContext, useState} from "react";
-import {Dollar} from "../other";
+import React, {useContext, useEffect, useRef, useState} from "react";
+import {Currency, Dollar} from "../other";
 import {Trash} from "bootstrap-icons-react";
 import {AlertContext, CartContext} from "../../redux/context";
 import {actions} from "../../redux/reduxer/cart-reducer";
 import {Order} from "./order-modal";
 import {CartService} from "../../services/cart-service";
+import {PizzaPromise} from "../../helpers/promise";
 
 const FEE = 5;
+export const CART_KEY = 'cart';
 
 export const CartPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +19,13 @@ export const CartPage = () => {
 
     const totalPrice = cartContext.cart.reduce((accum, val) => accum + val.price, 0);
 
+    const isSubscribed = useRef();
+    useEffect(() => {
+        isSubscribed.current = true;
+
+        return () => {isSubscribed.current = false}
+    }, []);
+
     const onSubmitClickHandler = e => {
         e.preventDefault();
 
@@ -25,31 +34,26 @@ export const CartPage = () => {
     };
 
     const onOrderCloseHandler = e => {
+        if (!isSubscribed.current) return;
+
         let btnName;
-        if (e){
+        if (e) {
             e.persist();
             btnName = e.target.name;
         }
 
-        const handleError = err => {
-            setAlert({error: err.toString()});
-            console.log(err);
-            setIsLoading(false);
-        };
-
-        const handleSuccess = data => {
+        const callback = data => {
             console.log(data);
             cartDispatch({type: actions.clean});
-            setAlert('You order is cooking now...');
+            setAlert({success: 'You order is cooking now...'});
             setIsLoading(false);
         };
 
         if (btnName === 'order') {
-            CartService.makeOrder(cartContext.cart, handleSuccess, handleError)
-        }else{
+            CartService.makeOrder(cartContext.cart, new PizzaPromise(callback));
+        } else {
             setIsLoading(false);
         }
-
 
         setShowModal(false);
     };
@@ -164,7 +168,7 @@ const CartTable = (props) => {
                 </div>
             </th>
             <td className="border-0 align-middle"><strong>
-                <Dollar>{price}</Dollar>
+                <Currency>{price}</Currency>
             </strong></td>
             <td className="border-0 align-middle"><strong>
                 {amount}
@@ -208,15 +212,15 @@ const CartSummary = (props) => {
         <ListGroup className={'mb-4'}>
             <ListGroup.Item className="d-flex justify-content-between py-3 border-bottom">
                 <strong className="text-muted">Order Subtotal</strong>
-                <strong><Dollar>{total}</Dollar></strong>
+                <strong><Currency>{total}</Currency></strong>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex justify-content-between py-3 border-bottom">
                 <strong className="text-muted">Delivery cost</strong>
-                <strong><Dollar>{deliveryFee}</Dollar></strong>
+                <strong><Currency>{deliveryFee}</Currency></strong>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex justify-content-between py-3 border-bottom">
                 <strong className="text-muted">Total</strong>
-                <h5 className={'font-weight-bold'}><Dollar>{total + deliveryFee}</Dollar></h5>
+                <h5 className={'font-weight-bold'}><Currency>{total + deliveryFee}</Currency></h5>
             </ListGroup.Item>
         </ListGroup>;
 

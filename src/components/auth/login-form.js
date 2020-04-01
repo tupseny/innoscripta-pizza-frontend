@@ -12,8 +12,11 @@ const LOGIN = 'Log in';
 
 export const LoginPage = () => {
     const setAlert = useContext(AlertContext)[1];
-    const setUser = useContext(UserContext)[1];
+    const [user, setUser] = useContext(UserContext);
     const [loading, setLoading] = useState(false);
+
+    if (user.api_token)
+        return <Redirect to={'home'}/>;
 
     const login = (values) => {
         const data = {

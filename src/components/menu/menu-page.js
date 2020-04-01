@@ -3,6 +3,6 @@ import {MenuBrowser} from "./menu-browser";
 import {Container} from "react-bootstrap";
 
 export const Menu = () =>
-        <Container>
+        <Container id={"menu-section"}>
             <MenuBrowser/>
         </Container>;

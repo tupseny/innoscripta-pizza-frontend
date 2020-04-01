@@ -5,10 +5,13 @@ import {PlusSquare, PlusSquareFill} from "bootstrap-icons-react";
 
 import './menu.scss';
 import {MenuService} from "../../services/menu-service";
-import {CartContext} from "../../redux/context";
+import {CartContext, CurrencyContext} from "../../redux/context";
 import {actions} from "../../redux/reduxer/cart-reducer";
+import {PizzaPromise} from "../../helpers/promise";
+import {Currency} from "../other/currency";
 
-const ITEMS_KEY = 'menu-groups';
+const GROUPS_KEY = 'menu-groups';
+const MEALS_KEY = 'group-items';
 
 
 /*
@@ -21,8 +24,8 @@ export const MenuBrowser = () => {
 
     //Get items from cache if exist
     useEffect(() => {
-        const items = JSON.parse(localStorage.getItem(ITEMS_KEY));
-        if (items) {
+        const items = JSON.parse(localStorage.getItem(GROUPS_KEY));
+        if (Object.keys(items).length > 0) {
             setItems(items);
             setIsLoaded(true)
         }
@@ -30,27 +33,28 @@ export const MenuBrowser = () => {
 
     //Fetch items from server
     useEffect(() => {
-        const successCallback = (data) => {
+        let isSubscribed = true;
+        const callback = (data) => {
+            if (!isSubscribed) return;
+
             setItems(data);
             setIsLoaded(true);
-            localStorage.setItem(ITEMS_KEY, JSON.stringify(data));
+            localStorage.setItem(GROUPS_KEY, JSON.stringify(data));
         };
 
-        const errorCallback = (err) => {
-            setIsLoaded(true);
-            console.log(err);
-        };
+        MenuService.fetchMenu(new PizzaPromise(callback));
 
-        MenuService.fetchMenu(successCallback, errorCallback)
+        return () => {isSubscribed = false};
     }, []);
 
     //Spinner
     const renderLoading = () => <Spinner className={'m-auto mt-5'} animation={"border"} variant={"warning"}/>;
 
-    const renderGroups = () =>
-        isLoaded ? items ? items.map(item =>
+    const renderGroups = () => {
+        return isLoaded ? (items ? items.map(item =>
             <MenuGroup key={item.id} id={item.id} title={item.name}/>
-        ) : null : renderLoading();
+        ) : null) : renderLoading();
+    };
 
     return renderGroups();
 };
@@ -67,24 +71,42 @@ export const MenuBrowser = () => {
 const MenuGroup = (props) => {
     const {title, id} = props;
     const [items, setItems] = useState([]);
+    const [isLoading, setIsloading] = useState(true);
 
     useEffect(() => {
-        const successCallback = (data) => {
+        const items = JSON.parse(localStorage.getItem(MEALS_KEY + '_' + id));
+
+        if (items && Object.keys(items).length > 0) {
+            setItems(items);
+            setIsloading(false)
+        }
+    }, [id]);
+
+    useEffect(() => {
+        let isSubscribed = true;
+
+        const callback = (data) => {
+            if (!isSubscribed) return;
+
+            setIsloading(false);
             setItems(data);
+            localStorage.setItem(MEALS_KEY + '_' + id, JSON.stringify(data))
         };
 
-        const errorCallback = (err) => {
-            console.log(err);
-        };
+        MenuService.fetchMeal(id, new PizzaPromise(callback));
 
-        MenuService.fetchMeal(id, successCallback, errorCallback);
+        return () => {isSubscribed = false}
     }, [id]);
 
     const renderLoading = () => <ProgressBar variant={"warning"} animated now={100}/>;
 
-    return <div>
-        <MenuGroupHeader name={title}/>
-        {items ? <MenuGroupBody items={items}/> : renderLoading()}
+    return <div className={'d-flex flex-column'}>
+        <Col>
+            <MenuGroupHeader name={title}/>
+        </Col>
+        <Col>
+            {isLoading ? renderLoading() : (items ? <MenuGroupBody category={title} items={items}/> : null)}
+        </Col>
     </div>
 };
 
@@ -115,12 +137,12 @@ const MenuGroupHeader = (props) => {
 *
 * */
 const MenuGroupBody = (props) => {
-    const {items} = props;
+    const {items, category} = props;
 
     return items ? <Row>
         {items.map((item) =>
             <Col xs={4} className={'menu-item-container'} key={item.id}>
-                <MenuItem id={item.id} name={item.name} image={item.image} price={item.price}/>
+                <MenuItem image={category.toLowerCase() + '_' + item.name.toLowerCase() + '.png'} category={category} id={item.id} name={item.name} price={item.price}/>
             </Col>
         )}
     </Row> : null;
@@ -138,18 +160,31 @@ const MenuGroupBody = (props) => {
 *
 * */
 const MenuItem = (props) => {
-    const {name, image, price, id} = props;
+    const {name, image, price, id, category} = props;
     const imgWidth = '300px';
 
     const [amount, setAmount] = useState(0);
     const [isInCart, setIsInCart] = useState(false);
 
-    const cartDispatch = useContext(CartContext)[1];
+    const [cartContext, cartDispatch] = useContext(CartContext);
+
+    useEffect(() => {
+        const cart = cartContext.cart;
+
+        if (cart) {
+            const item = cart.find(el => el.id === id);
+            if (item) {
+                const newAmount = item.amount;
+                setAmount(newAmount);
+                if (newAmount > 0) setIsInCart(true);
+            }
+        }
+    }, []);
 
     const updateContext = (newAmount) => {
         cartDispatch({
             type: actions.updateAmount,
-            item: {id: id, name: name, price: price, amount: newAmount}
+            item: {id: id, name: name, price: price, amount: newAmount, category: category}
         });
     };
 
@@ -184,7 +219,7 @@ const MenuItem = (props) => {
         </button>;
 
     return <Card className={'menu-item d-flex flex-column align-items-center'}>
-        <Card.Img loading={"lazy"} src={image} width={imgWidth}/>
+        <Card.Img loading={"lazy"} src={'static/img/' + image} width={imgWidth}/>
         <Card.Body className={'w-100'}>
 
             <Row className={'d-flex align-items-end'}>
@@ -195,7 +230,7 @@ const MenuItem = (props) => {
 
                 <Row className={'d-flex align-items-baseline'}>
                     <Col className={'text-center text-dark price-container'}>
-                        <Dollar>{price}</Dollar>
+                        <Currency>{price}</Currency>
                     </Col>
 
                     <Col className={'text-right d-flex flex-row align-items-end'}>

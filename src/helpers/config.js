@@ -1,13 +1,15 @@
 export const CONFIG = {
     title: 'Pizza',
     urls: {
-        logo: '',
+        logo: 'static/img/pizza-logo.svg',
         header: '',
     },
     paths: {
-        home: '/',
+        menu: '/menu',
+        home: '/home',
         login: '/login',
-        sigup: '/signup',
-        cart: '/cart'
+        signup: '/signup',
+        cart: '/cart',
+        history: '/history',
     }
 };

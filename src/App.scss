@@ -4,10 +4,11 @@
 
 body {
   font-family: 'Comic Sans MS', sans-serif;
+  background-color: transparentize(darken($warning, 20), 0.95);
 }
 
 .icon-btn,
-.icon-btn:not(:disabled):not(.disabled):active:focus{
+.icon-btn:not(:disabled):not(.disabled):active:focus {
   padding: 0;
   margin-right: 6px;
   font-size: 2rem;

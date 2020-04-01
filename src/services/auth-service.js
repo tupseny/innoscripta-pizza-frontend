@@ -1,16 +1,16 @@
 import {ApiService} from "./api";
 
 export class AuthService extends ApiService {
-    static register(data, successCallback, errorCallback) {
+    static register(data, promiseClass) {
         const path = '/register';
 
-        this.postApiRequest(path, data, successCallback, errorCallback);
+        this.postApiRequest(path, data, promiseClass);
     }
 
-    static authenticate(data, successCallback, errorCallback){
+    static authenticate(data, promiseClass){
         const path = '/login';
 
-        this.postApiRequest(path, data, successCallback, errorCallback);
+        this.postApiRequest(path, data, promiseClass);
     }
 
     static saveToken(token) {
@@ -23,7 +23,7 @@ export class AuthService extends ApiService {
 
     static logout(){
         const path = '/logout';
-        this.postApiRequest(path);
         localStorage.removeItem('token');
+        this.postApiRequest(path);
     }
 }

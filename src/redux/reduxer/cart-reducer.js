@@ -1,5 +1,19 @@
-export const initializer = () => {
-    return {cart: []};
+import {CART_KEY} from "../../components/cart/cart-browser";
+
+
+export const cartInitializer = () => {
+    let cart = JSON.parse(localStorage.getItem(CART_KEY));
+    if (!cart) {
+        cart = {cart: []}
+    }
+
+    return cart;
+
+    // return {cart: [
+    //         {name: 'Margarita', amount: 3, price: 72, category: 'Pizza', id: 1},
+    //         {name: 'Ferrita', amount: 1, price: 5, category: 'Pizza', id: 2},
+    //         {name: 'Coca-cola', amount: 1, price: 123, category: 'Drinks', id: 3}
+    //     ]};
 };
 
 export const actions = {
@@ -11,17 +25,27 @@ export const actions = {
 export const cartReducer = (state, action) => {
     const {cart} = state;
 
+    let newState = [];
     switch (action.type) {
         case actions.updateAmount:
-            return genNewState({cart: addToCart(action.item, cart)});
+            newState = genNewState({cart: addToCart(action.item, cart)});
+            break;
         case actions.remove:
             const id = action.item.id;
-            const newState = genNewState({cart: removeFromCart(id, cart)});
-            return newState;
+            newState = genNewState({cart: removeFromCart(id, cart)});
+            break;
         case actions.clean:
-            return {cart: []};
+            newState = {cart: []};
+            break;
         default:
             throw new Error('Not allowed action')
+    }
+
+    saveNewState(newState);
+    return newState;
+
+    function saveNewState(state){
+        localStorage.setItem(CART_KEY, JSON.stringify(state))
     }
 
     function genNewState(obj) {

@@ -1,5 +1,5 @@
 import {PersonPlus} from "bootstrap-icons-react";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 
 import './register.scss';
 import {Button, Form, FormControl, FormGroup, Spinner} from "react-bootstrap";
@@ -8,6 +8,7 @@ import {RegisterValidator} from "../../validators";
 import {AuthService} from "../../services/auth-service";
 import {CONFIG} from "../../helpers/config";
 import {AlertContext} from "../../redux/context";
+import {PizzaPromise} from "../../helpers/promise";
 
 const CREATE_ACCOUNT_TITLE = 'Create an account';
 const SUBMIT_BUT = 'Sign Up';
@@ -17,17 +18,30 @@ export const RegisterPage = () => {
     const setAlert = useContext(AlertContext)[1];
     const [loading, setLoading] = useState(false);
 
+    const isSubscribed = useRef();
+    useEffect(() => {
+        isSubscribed.current = true;
+
+        return () => {
+            isSubscribed.current = false
+        }
+    }, []);
+
     const register = (values) => {
+        if (!isSubscribed.current) return;
+
         setLoading(true);
 
-        const successCallback = data => {
-            setLoading(false);
-            console.log(data);
+        const error = (error) => {
+            Object.keys(error.message).forEach((key) => {
+                setAlert({error: error.message[key][0]});
+            });
 
-            if (data.errors)
-                Object.keys(data.errors).forEach((key) => {
-                    setAlert({error: data.errors[key][0]});
-                });
+            setLoading(false);
+        };
+
+        const callback = data => {
+            setLoading(false);
 
             if (data.api_token) {
                 AuthService.saveToken(data.api_token);
@@ -35,16 +49,13 @@ export const RegisterPage = () => {
             }
         };
 
-        const errorCallback = err => {
-            console.log(err);
-        };
 
         const data = {
             'email': values.email,
             'password': values.password,
         };
 
-        AuthService.register(data, successCallback, errorCallback);
+        AuthService.register(data, new PizzaPromise(callback, error));
     };
 
     return <RegisterFormBrowser loginUrl={CONFIG.paths.login} handleRegister={register} loading={loading}/>

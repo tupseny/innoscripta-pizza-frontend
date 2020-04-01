@@ -2,10 +2,10 @@ import React from 'react';
 
 import './footer.scss'
 
-export const Footer = () => {
+export const PizzaFooter = () => {
     return <div className="footer-basic">
-        <Footer>
+        <footer>
             <p className="copyright">PIZZA © 2020</p>
-        </Footer>
+        </footer>
     </div>
 };

@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import {UserContext} from "../redux/context";
 import {AuthService} from "../services/auth-service";
 import {UserService} from "../services/user-service";
+import {PizzaPromise} from "../helpers/promise";
 
 export const InitApp = () => {
     return <UpdateUser/>
@@ -11,7 +12,7 @@ const UpdateUser = () => {
     const [user, setUser] = useContext(UserContext);
 
     if (AuthService.getToken() !== null && Object.keys(user).length === 0) {
-        const handleNewUser = (data) => {
+        const callback = (data) => {
             if (data?.api_token) {
                 setUser(data);
             } else {
@@ -19,12 +20,7 @@ const UpdateUser = () => {
             }
         };
 
-        const handleError = (err) => {
-            AuthService.logout();
-            console.log(err);
-        };
-
-        UserService.getUserBytToken(AuthService.getToken(), handleNewUser);
+        UserService.getUserBytToken(AuthService.getToken(), new PizzaPromise(callback));
     }
 
     return null;

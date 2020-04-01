@@ -5,36 +5,47 @@ import {CONFIG} from "../../helpers/config"
 
 import $ from 'jquery';
 import {AuthService} from "../../services/auth-service";
-import {UserContext} from "../../redux/context";
-import {UserService} from "../../services/user-service";
+import {CurrencyContext, UserContext} from "../../redux/context";
+import {NavLink} from "react-router-dom";
+import {CURRENCY} from "../other/currency";
+import {forEach} from "react-bootstrap/cjs/ElementChildren";
+import {currencyActions} from "../../redux/reduxer/currency-reducer";
 
 export const NavbarPizza = () => {
     const [user, setUser] = useContext(UserContext);
-
-    const menu_categories = [
-        {name: 'Pizza', href: '#pizza-category'},
-        {name: 'Drinks', href: '#drinks-category'},
-        {name: 'Snacks', href: '#snacks-category'},
-    ];
+    const [currencyContext, currencyDispatch] = useContext(CurrencyContext);
+    const token = AuthService.getToken();
 
     const config = {
         brand: {
             name: CONFIG.title,
             logo: CONFIG.urls.logo,
         },
-        menu: 'menu',
         nav: {
+            menu: {name: 'menu', href: CONFIG.paths.menu},
             home: {name: 'home', href: CONFIG.paths.home},
             cart: {name: 'cart', href: CONFIG.paths.cart},
             login: {name: 'Log in', href: CONFIG.paths.login},
-            signup: {name: 'Sign up', href: CONFIG.paths.sigup},
-            signout: {name: 'Sign Out'}
+            signup: {name: 'Sign up', href: CONFIG.paths.signup},
+            signout: {name: 'Sign Out'},
+            history: {name: 'History', href: CONFIG.paths.history},
+            currency: {name: 'Currency', values: [CURRENCY.euro, CURRENCY.dollar, CURRENCY.rubble]}
         },
     };
 
-    const handleSignout = () => {
+    const handleSignOut = () => {
         setUser({});
         AuthService.logout();
+    };
+
+    const handleCurrencyChange = (key, event) => {
+        if (event) event.persist();
+        const choose = event.target.name;
+        Object.keys(CURRENCY).forEach(value => {
+            if (CURRENCY[value].symbol === choose) currencyDispatch({
+                type: currencyActions.update, item: CURRENCY[value]
+            });
+        })
     };
 
     const renderCollapsibleNavbar = () => {
@@ -52,47 +63,35 @@ export const NavbarPizza = () => {
             </Navbar.Brand>;
 
         const renderLeftNav = () => {
-            // const renderNavDropdown = () =>
-                // <NavDropdown title={config.menu}>
-                //     {menu_categories.map((item, index) => {
-                //         let html;
-                //         if (index === 0) {
-                //             html =
-                //                 <div key={index}>
-                //                     <NavDropdown.Item href={item.href} className={'text-danger'}>
-                //                         {item.name}
-                //                     </NavDropdown.Item>
-                //                     <NavDropdown.Divider/>
-                //                 </div>
-                //         } else {
-                //             html =
-                //                 <NavDropdown.Item key={index} href={item.href}>
-                //                     {item.name}
-                //                 </NavDropdown.Item>
-                //         }
-                //
-                //         return html;
-                //     })}
-                // </NavDropdown>;
-
             return <Nav className={'mr-auto text-uppercase'}>
-                <Link to={config.nav.home.href}>
-                    <Nav.Link>{config.nav.home.name}</Nav.Link>
-                </Link>
-                <Link to={config.nav.cart.href}>
-                    <Nav.Link>{config.nav.cart.name}</Nav.Link>
-                </Link>
-                {/*{renderNavDropdown()}*/}
+                <NavLink className={'nav-link'} to={config.nav.home.href}>{config.nav.home.name}</NavLink>
+                <NavLink className={'nav-link'} to={config.nav.menu.href}> {config.nav.menu.name}</NavLink>
             </Nav>;
         };
 
         const renderRightNav = () =>
             <Nav>
-                {user.api_token
-                    ? <Button className={'signout'}
-                              onClick={handleSignout}>{config.nav.signout.name}</Button>
-                    : <><Nav.Link href={config.nav.login.href} className={'login'}>{config.nav.login.name}</Nav.Link>
-                        <Nav.Link href={config.nav.signup.href} className={'signup'}>{config.nav.signup.name}</Nav.Link>
+                <NavDropdown onSelect={handleCurrencyChange} title={currencyContext.currency.symbol} id={'currency-dropdown'}>
+                    {config.nav.currency.values.map((val, index) =>
+                        <NavDropdown.Item key={index}
+                                          name={val.symbol}>{val.symbol + ' - ' + val.name}</NavDropdown.Item>
+                    )}
+                </NavDropdown>
+                <NavLink className={'nav-link text-uppercase'}
+                         to={config.nav.cart.href}> {config.nav.cart.name}</NavLink>
+                {user.api_token || token
+                    ? <>
+                        <NavLink to={config.nav.history.href}
+                                 className={'nav-link text-uppercase mr-3'}>{config.nav.history.name}</NavLink>
+                        <Button className={'signout'}
+                                onClick={handleSignOut}>{config.nav.signout.name}</Button>
+                    </>
+
+                    : <>
+                        <NavLink to={config.nav.login.href}
+                                 className={'login nav-link'}>{config.nav.login.name}</NavLink>
+                        <NavLink to={config.nav.signup.href}
+                                 className={'signup nav-link'}>{config.nav.signup.name}</NavLink>
                     </>
                 }
             </Nav>;
@@ -100,13 +99,11 @@ export const NavbarPizza = () => {
 
         return <Navbar expand={"md"} className={'navbar-main'}>
             {renderBrand()}
-            <Container>
-                <Navbar.Toggle ariac-controls={'navbar-nav'}/>
-                <Navbar.Collapse id={'navbar-nav'}>
-                    {renderLeftNav()}
-                    {renderRightNav()}
-                </Navbar.Collapse>
-            </Container>
+            <Navbar.Toggle ariac-controls={'navbar-nav'}/>
+            <Navbar.Collapse id={'navbar-nav'}>
+                {renderLeftNav()}
+                {renderRightNav()}
+            </Navbar.Collapse>
         </Navbar>;
     };
 
@@ -116,22 +113,22 @@ export const NavbarPizza = () => {
 $(document).ready(function () {
     const homePath = CONFIG.paths.home;
 
-    const path = window.location.pathname;
-
     $(window).scroll(function () {
+        const path = window.location.pathname;
         const scroll = $(window).scrollTop();
-        if (scroll < 400 && path === homePath) {
-            $('.navbar-tiny').removeClass('navbar-tiny');
+        if (path === homePath) {
+            if (scroll < 420) {
+                $('.navbar-tiny').removeClass('navbar-tiny');
+                $('.navbar-main').addClass('navbar-transporent');
+            } else {
+                $('.navbar-main').removeClass('navbar-transporent');
+                $('.navbar-main').addClass('navbar-tiny');
+            }
         } else {
+            $('.navbar-main').removeClass('navbar-transporent');
             $('.navbar-main').addClass('navbar-tiny');
         }
-    });
 
-    switch (path) {
-        case homePath:
-            $('.navbar-main').addClass('navbar-transporent');
-            break;
-        default:
-            $('.navbar-main').addClass('navbar-tiny');
-    }
-});
+    });
+})
+;

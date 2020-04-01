@@ -1,6 +1,6 @@
 import {Button, ButtonGroup, Col, Container, Form, ListGroup, Modal, Row} from "react-bootstrap";
 import React, {useState} from "react";
-import {Dollar} from "../other";
+import {Currency, Dollar} from "../other";
 import {FullscreenExit, X, XSquare, XSquareFill} from "bootstrap-icons-react";
 import {Validators} from "../../helpers/validators";
 
@@ -59,7 +59,7 @@ export const Order = props => {
             </Form.Group>
             <div className={'d-flex justify-content-between py-3'}>
                 <strong className="text-muted">Total</strong>
-                <h5 className={'font-weight-bold'}><Dollar>{totalPrice}</Dollar></h5>
+                <h5 className={'font-weight-bold'}><Currency>{totalPrice}</Currency></h5>
             </div>
         </Container>
     </Form>;

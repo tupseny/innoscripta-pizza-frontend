@@ -1,34 +1,35 @@
 import {ApiService} from "./api";
 import {UserService} from "./user-service";
 import {AuthService} from "./auth-service";
+import {PizzaPromise} from "../helpers/promise";
 
 export class CartService extends ApiService {
-    static makeOrder(items, successCallback, errorCallback) {
-        function handleUserPromise(data) {
+    static makeOrder(items, promiseClass) {
+        function handleUserCallback(data) {
             const user = data;
-            if (user.api_token) {
+            if (user?.api_token) {
                 console.log(user);
-                const path = '/order';
+                const path = '/user/orders';
                 const data = {
                     api_token: user.api_token,
                     items: items
                 };
-                ApiService.postApiRequest(path, data, successCallback, errorCallback);
+                ApiService.postApiRequest(path, data, promiseClass);
             } else {
-                CartService.makeAnonOrder(items, successCallback, errorCallback)
+                CartService.makeAnonOrder(items, promiseClass)
             }
         }
 
         const token = AuthService.getToken();
         if (token) {
-            UserService.getUserBytToken(AuthService.getToken(), handleUserPromise, errorCallback);
+            UserService.getUserBytToken(AuthService.getToken(), new PizzaPromise(handleUserCallback));
         } else {
-            CartService.makeAnonOrder(items, successCallback, errorCallback);
+            CartService.makeAnonOrder(items, promiseClass);
         }
     }
 
-    static makeAnonOrder(items, successCallback, errorCallback) {
+    static makeAnonOrder(items, promiseClass) {
         const path = '/order/anon';
-        this.postApiRequest(path, items, successCallback, errorCallback);
+        this.postApiRequest(path, items, promiseClass);
     }
 }
