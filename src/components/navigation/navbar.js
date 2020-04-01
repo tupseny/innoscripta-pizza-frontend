@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
-import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Badge, Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import "./navbar.scss";
 import {CONFIG} from "../../helpers/config"
 
 import $ from 'jquery';
 import {AuthService} from "../../services/auth-service";
-import {CurrencyContext, UserContext} from "../../redux/context";
+import {CartContext, CurrencyContext, UserContext} from "../../redux/context";
 import {NavLink} from "react-router-dom";
 import {CURRENCY} from "../other/currency";
 import {forEach} from "react-bootstrap/cjs/ElementChildren";
@@ -13,6 +13,7 @@ import {currencyActions} from "../../redux/reduxer/currency-reducer";
 
 export const NavbarPizza = () => {
     const [user, setUser] = useContext(UserContext);
+    const cartContext = useContext(CartContext)[0];
     const [currencyContext, currencyDispatch] = useContext(CurrencyContext);
     const token = AuthService.getToken();
 
@@ -69,16 +70,21 @@ export const NavbarPizza = () => {
             </Nav>;
         };
 
-        const renderRightNav = () =>
-            <Nav>
-                <NavDropdown onSelect={handleCurrencyChange} title={currencyContext.currency.symbol} id={'currency-dropdown'}>
+        const renderRightNav = () => {
+            const cartCount = cartContext.cart.length;
+            return <Nav>
+                <NavDropdown onSelect={handleCurrencyChange} title={currencyContext.currency.symbol}
+                             id={'currency-dropdown'}>
                     {config.nav.currency.values.map((val, index) =>
                         <NavDropdown.Item key={index}
                                           name={val.symbol}>{val.symbol + ' - ' + val.name}</NavDropdown.Item>
                     )}
                 </NavDropdown>
                 <NavLink className={'nav-link text-uppercase'}
-                         to={config.nav.cart.href}> {config.nav.cart.name}</NavLink>
+                         to={config.nav.cart.href}>
+                    {config.nav.cart.name}
+                    {cartCount > 0 ? <Badge variant={"danger"} pill>{cartContext.cart.length}</Badge> : null}
+                </NavLink>
                 {user.api_token || token
                     ? <>
                         <NavLink to={config.nav.history.href}
@@ -95,6 +101,7 @@ export const NavbarPizza = () => {
                     </>
                 }
             </Nav>;
+        };
 
 
         return <Navbar expand={"md"} className={'navbar-main'}>
