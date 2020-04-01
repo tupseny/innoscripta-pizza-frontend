@@ -1,10 +1,575 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9140d15a-bd47-4abc-bbc3-1161cd81392f" name="Default Changelist" comment="- Overview menu&#10;- Add to cart&#10;- Make order">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/login-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/login-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SCSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Admin\OneDrive\Work\Project\innoscripta-front\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1ZX3ueXSPzURYW8VEF5uuY8pQYv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_interpreter_path" value="node" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/node_modules/react-bootstrap-sidebar/sidebar.js&#10;C:/Users/marsi/OneDrive/Work/Project/innoscripta-front/build/index.html&#10;C:/Users/marsi/OneDrive/Work/Project/innoscripta-front/node_modules/react-bootstrap-sidebar/style.css" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/static" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="ts.external.directory.path" value="C:\Users\marsi\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\193.5662.54\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front" />
+      <recent name="C:\Users\Admin\OneDrive\Work\Project\innoscripta-front\src\redux\reduxer" />
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front\public\static" />
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front\src\components" />
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front\node_modules" />
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front\src\components\navigation\footer" />
+      <recent name="C:\Users\marsi\OneDrive\Work\Project\innoscripta-front\src\components\auth" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm build">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm build" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="C:/Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="C:/Program Files/nodejs/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm build" />
+      <item itemvalue="npm.npm start" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9140d15a-bd47-4abc-bbc3-1161cd81392f" name="Default Changelist" comment="" />
+      <created>1584971835881</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584971835881</updated>
+      <workItem from="1584971853381" duration="1820000" />
+      <workItem from="1584983846499" duration="7363000" />
+      <workItem from="1585046925506" duration="1295000" />
+      <workItem from="1585049058023" duration="12695000" />
+      <workItem from="1585070323081" duration="2022000" />
+      <workItem from="1585073574778" duration="22171000" />
+      <workItem from="1585132638304" duration="9750000" />
+      <workItem from="1585145627295" duration="1130000" />
+      <workItem from="1585147448754" duration="22000" />
+      <workItem from="1585148840961" duration="2218000" />
+      <workItem from="1585151114918" duration="29565000" />
+      <workItem from="1585242974354" duration="1011000" />
+      <workItem from="1585392425469" duration="32846000" />
+      <workItem from="1585484195568" duration="3871000" />
+      <workItem from="1585484689928" duration="33416000" />
+      <workItem from="1585529492370" duration="667000" />
+      <workItem from="1585653378537" duration="268000" />
+      <workItem from="1585653798388" duration="43747000" />
+    </task>
+    <task id="LOCAL-00001" summary="- Overview menu&#10;- Add to cart&#10;- Make order">
+      <created>1585182543755</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585182543755</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update jquery (because of security reasons)">
+      <created>1585182710770</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585182710770</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".gitignore">
+      <created>1585399545336</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585399545336</updated>
+    </task>
+    <task id="LOCAL-00004" summary="UPDATED navbar component">
+      <created>1585399646560</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585399646560</updated>
+    </task>
+    <task id="LOCAL-00005" summary="package.json. Added bootswatch">
+      <created>1585399669181</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1585399669181</updated>
+    </task>
+    <task id="LOCAL-00006" summary="menu browser">
+      <created>1585429449877</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585429449877</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Use global config file for constants an so on">
+      <created>1585429502726</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585429502726</updated>
+    </task>
+    <task id="LOCAL-00008" summary="USe separate component for all contexts">
+      <created>1585429554661</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585429554661</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Refactoring of currency.js">
+      <created>1585429594772</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1585429594772</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Use another bootstrap them">
+      <created>1585429633871</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1585429633871</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Create style for all icon buttons">
+      <created>1585429674651</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1585429674651</updated>
+    </task>
+    <task id="LOCAL-00012" summary="NEW cart browser">
+      <created>1585433077405</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1585433077405</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Refactoring cart component">
+      <created>1585439790090</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1585439790090</updated>
+    </task>
+    <task id="LOCAL-00014" summary="NEW register-form.js component">
+      <created>1585504339188</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1585504339188</updated>
+    </task>
+    <task id="LOCAL-00015" summary="NEW login component">
+      <created>1585511000676</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1585511000676</updated>
+    </task>
+    <task id="LOCAL-00016" summary="UPDATE navbar component. Signout button">
+      <created>1585511037127</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1585511037127</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add loading spinner while reqesting from server data">
+      <created>1585529718867</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529718867</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Cart and Order making components update">
+      <created>1585529803545</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529803545</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix mistype">
+      <created>1585529832617</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529832617</updated>
+    </task>
+    <task id="LOCAL-00020" summary="NEW footer component">
+      <created>1585529853223</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529853223</updated>
+    </task>
+    <task id="LOCAL-00021" summary="NEW routing">
+      <created>1585529898600</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529898600</updated>
+    </task>
+    <task id="LOCAL-00022" summary="move alert box higher">
+      <created>1585529921817</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529921817</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Get user and save it in cache">
+      <created>1585529963149</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1585529963149</updated>
+    </task>
+    <task id="LOCAL-00024" summary="little refactorings">
+      <created>1585530002391</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1585530002391</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added static images">
+      <created>1585699273066</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1585699273066</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Final changes">
+      <created>1585699367212</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1585699367212</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update jquery (because of security reasons)" />
+    <MESSAGE value=".gitignore" />
+    <MESSAGE value="UPDATED navbar component" />
+    <MESSAGE value="package.json. Added bootswatch" />
+    <MESSAGE value="menu browser" />
+    <MESSAGE value="Use global config file for constants an so on" />
+    <MESSAGE value="USe separate component for all contexts" />
+    <MESSAGE value="Refactoring of currency.js" />
+    <MESSAGE value="Use another bootstrap them" />
+    <MESSAGE value="Create style for all icon buttons" />
+    <MESSAGE value="NEW cart browser" />
+    <MESSAGE value="Refactoring cart component" />
+    <MESSAGE value="NEW register-form.js component" />
+    <MESSAGE value="NEW login component" />
+    <MESSAGE value="UPDATE navbar component. Signout button" />
+    <MESSAGE value="Add loading spinner while reqesting from server data" />
+    <MESSAGE value="Cart and Order making components update" />
+    <MESSAGE value="fix mistype" />
+    <MESSAGE value="NEW footer component" />
+    <MESSAGE value="NEW routing" />
+    <MESSAGE value="move alert box higher" />
+    <MESSAGE value="Get user and save it in cache" />
+    <MESSAGE value="little refactorings" />
+    <MESSAGE value="Added static images" />
+    <MESSAGE value="Final changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final changes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#ESLint" timestamp="1585071020152">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1585071020152" />
+    <state x="2026" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585701640900">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state x="149" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1831.1080@0.0.1831.1080" timestamp="1585049484334" />
+    <state x="408" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585667099512" />
+    <state x="2026" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585701640900" />
+    <state x="379" y="120" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585071013627" />
+    <state x="677" y="334" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585063374473">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state x="677" y="334" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1831.1080@0.0.1831.1080" timestamp="1585063374473" />
+    <state x="2377" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1584984214595">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state x="2377" y="100" key="#com.intellij.ide.util.MemberChooser/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1584984214595" />
+    <state x="651" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585498149491">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="645" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1831.1080@0.0.1831.1080" timestamp="1585051833425" />
+    <state x="651" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585498149491" />
+    <state x="2379" y="203" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585178179152" />
+    <state x="666" y="390" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585171415658">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="666" y="390" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585171415658" />
+    <state x="83" y="0" width="1736" height="1015" key="CommitChangelistDialog2" timestamp="1585699365276">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="83" y="0" width="1736" height="1015" key="CommitChangelistDialog2/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585699365276" />
+    <state x="595" y="302" key="EditFileWatcherDialog" timestamp="1585081285317">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="595" y="302" key="EditFileWatcherDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585081285317" />
+    <state x="762" y="293" key="FileChooserDialogImpl" timestamp="1585425938688">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="755" y="293" key="FileChooserDialogImpl/0.0.1831.1080@0.0.1831.1080" timestamp="1585049451640" />
+    <state x="762" y="293" key="FileChooserDialogImpl/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585425938688" />
+    <state x="792" y="282" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585071004587" />
+    <state x="782" y="327" width="283" height="316" key="Github.ShareDialog" timestamp="1585182270867">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="782" y="327" width="283" height="316" key="Github.ShareDialog/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585182270867" />
+    <state width="1827" height="281" key="GridCell.Tab.0.bottom" timestamp="1585701534233">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state width="1810" height="279" key="GridCell.Tab.0.bottom/0.0.1831.1080@0.0.1831.1080" timestamp="1585145009031" />
+    <state width="1827" height="281" key="GridCell.Tab.0.bottom/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585668628670" />
+    <state width="1827" height="281" key="GridCell.Tab.0.bottom/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585701534233" />
+    <state width="1827" height="311" key="GridCell.Tab.0.bottom/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1899" height="265" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1585096732105" />
+    <state width="1827" height="281" key="GridCell.Tab.0.center" timestamp="1585701534232">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state width="1810" height="279" key="GridCell.Tab.0.center/0.0.1831.1080@0.0.1831.1080" timestamp="1585145009031" />
+    <state width="1827" height="281" key="GridCell.Tab.0.center/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585668628670" />
+    <state width="1827" height="281" key="GridCell.Tab.0.center/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585701534232" />
+    <state width="1827" height="311" key="GridCell.Tab.0.center/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225599" />
+    <state width="1899" height="265" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1585096732105" />
+    <state width="1827" height="281" key="GridCell.Tab.0.left" timestamp="1585701534232">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state width="1810" height="279" key="GridCell.Tab.0.left/0.0.1831.1080@0.0.1831.1080" timestamp="1585145009030" />
+    <state width="1827" height="281" key="GridCell.Tab.0.left/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585668628670" />
+    <state width="1827" height="281" key="GridCell.Tab.0.left/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585701534232" />
+    <state width="1827" height="311" key="GridCell.Tab.0.left/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225599" />
+    <state width="1899" height="265" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1585096732105" />
+    <state width="1827" height="281" key="GridCell.Tab.0.right" timestamp="1585701534233">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state width="1810" height="279" key="GridCell.Tab.0.right/0.0.1831.1080@0.0.1831.1080" timestamp="1585145009031" />
+    <state width="1827" height="281" key="GridCell.Tab.0.right/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585668628670" />
+    <state width="1827" height="281" key="GridCell.Tab.0.right/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585701534233" />
+    <state width="1827" height="311" key="GridCell.Tab.0.right/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225599" />
+    <state width="1899" height="265" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1585096732105" />
+    <state width="1810" height="347" key="GridCell.Tab.1.bottom" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.1.bottom/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.1.bottom/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.1.bottom/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.1.center" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.1.center/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.1.center/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312466" />
+    <state width="1827" height="311" key="GridCell.Tab.1.center/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.1.left" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.1.left/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.1.left/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312466" />
+    <state width="1827" height="311" key="GridCell.Tab.1.left/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.1.right" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.1.right/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.1.right/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312466" />
+    <state width="1827" height="311" key="GridCell.Tab.1.right/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.2.bottom" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.2.bottom/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.2.bottom/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.2.bottom/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.2.center" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.2.center/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.2.center/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.2.center/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.2.left" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.2.left/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.2.left/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.2.left/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.2.right" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.2.right/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.2.right/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.2.right/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.3.bottom" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.3.bottom/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.3.bottom/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.3.bottom/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.3.center" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.3.center/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.3.center/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.3.center/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.3.left" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.3.left/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.3.left/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.3.left/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state width="1810" height="347" key="GridCell.Tab.3.right" timestamp="1585065757021">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state width="1810" height="347" key="GridCell.Tab.3.right/0.0.1831.1080@0.0.1831.1080" timestamp="1585065757021" />
+    <state width="1827" height="311" key="GridCell.Tab.3.right/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1584989312467" />
+    <state width="1827" height="311" key="GridCell.Tab.3.right/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584991225600" />
+    <state x="813" y="168" key="RollbackChangesDialog" timestamp="1585429393721">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="813" y="168" key="RollbackChangesDialog/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585429393721" />
+    <state x="476" y="181" key="SettingsEditor" timestamp="1585132722985">
+      <screen x="0" y="0" width="1831" height="1080" />
+    </state>
+    <state x="476" y="181" key="SettingsEditor/0.0.1831.1080@0.0.1831.1080" timestamp="1585132722985" />
+    <state x="499" y="174" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585071043272" />
+    <state x="2284" y="194" key="Vcs.Push.Dialog.v2" timestamp="1585702700333">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state x="516" y="273" key="Vcs.Push.Dialog.v2/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585699372570" />
+    <state x="2284" y="194" key="Vcs.Push.Dialog.v2/0.0.1848.1080/1920.0.1304.768@1920.0.1304.768" timestamp="1585702700333" />
+    <state x="726" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585662427515">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="726" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585662427515" />
+    <state x="478" y="194" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1584990946040">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="478" y="194" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1848.1080/1920.0.1920.1040@0.0.1848.1080" timestamp="1584990946040" />
+    <state x="1740" y="139" width="1320" height="861" key="dock-window-1" timestamp="1585685811306">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state x="1740" y="139" width="1320" height="861" key="dock-window-1/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585685811306" />
+    <state x="644" y="254" width="1320" height="861" key="dock-window-2" timestamp="1585686802008">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="644" y="254" width="1320" height="861" key="dock-window-2/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585686802008" />
+    <state x="1920" y="0" width="1320" height="861" key="dock-window-3" timestamp="1585429823357">
+      <screen x="1920" y="0" width="1304" height="768" />
+    </state>
+    <state x="1920" y="0" width="1320" height="861" key="dock-window-3/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585429823357" />
+    <state x="603" y="147" width="642" height="786" key="find.popup" timestamp="1585693234321">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="603" y="147" width="642" height="786" key="find.popup/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585693234321" />
+    <state x="580" y="250" key="run.anything.popup" timestamp="1585162710748">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="580" y="250" key="run.anything.popup/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585162710748" />
+    <state x="583" y="235" width="679" height="678" key="search.everywhere.popup" timestamp="1585526198352">
+      <screen x="0" y="0" width="1848" height="1080" />
+    </state>
+    <state x="578" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1831.1080@0.0.1831.1080" timestamp="1585053204388" />
+    <state x="583" y="235" width="679" height="678" key="search.everywhere.popup/0.0.1848.1080/1920.0.1304.768@0.0.1848.1080" timestamp="1585526198352" />
   </component>
 </project>
