@@ -7,6 +7,8 @@ import {useForm} from "../../hooks/useForm";
 import LoginValidator from "../../validators/login-validator";
 import {AuthService} from "../../services/auth-service";
 import {AlertContext, UserContext} from "../../redux/context";
+import {PizzaPromise} from "../../helpers/promise";
+import {Redirect} from "react-router";
 
 const LOGIN = 'Log in';
 
@@ -26,7 +28,7 @@ export const LoginPage = () => {
 
         setLoading(true);
 
-        const successCallback = (data) => {
+        const callback = (data) => {
             const user = data.user;
             setLoading(false);
             console.log(user);
@@ -39,7 +41,13 @@ export const LoginPage = () => {
             }
         };
 
-        AuthService.authenticate(data, successCallback, (err) => console.error(err));
+        const error = () => {
+            setAlert({error: 'Unknown error'});
+
+            setLoading(false);
+        };
+
+        AuthService.authenticate(data, new PizzaPromise(callback, error));
     };
 
     return <LoginBrowser handleLogin={login} loading={loading}/>;
