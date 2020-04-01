@@ -17,13 +17,27 @@
 
 @media (max-width: 767px) {
   .hero h1 {
-    font-size: 5rem;
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 361px) {
+  .hero-btn-group a {
+    height: 64px;
+    font-size: 1.8em;
+    font-family: 'News Cycle', sans-serif;
+    filter: blur(0px) grayscale(0%) hue-rotate(0deg) invert(0%) saturate(84%);
+    margin-bottom: 0.5rem;
   }
 }
 
 @media (max-width: 360px) {
   .hero h1 {
-    font-size: 3.6rem;
+    font-size: 3rem;
+  }
+
+  .hero-btn-group a {
+    font-size: 1.4rem;
   }
 }
 
@@ -49,15 +63,8 @@
   padding: 32px 0 32px;
 }
 
-.hero-btn-group .col {
+.hero-btn-group > div {
   padding: 24px 64px 24px 64px;
-}
-
-.hero-btn-group a {
-  height: 64px;
-  font-size: 1.8em;
-  font-family: 'News Cycle', sans-serif;
-  filter: blur(0px) grayscale(0%) hue-rotate(0deg) invert(0%) saturate(84%);
 }
 
 .header-container {

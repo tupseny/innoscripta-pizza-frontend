@@ -123,7 +123,8 @@ $(document).ready(function () {
     $(window).scroll(function () {
         const path = window.location.pathname;
         const scroll = $(window).scrollTop();
-        if (path === homePath) {
+        const width = $(window).width();
+        if (path === homePath && width >= 768) {
             if (scroll < 420) {
                 $('.navbar-tiny').removeClass('navbar-tiny');
                 $('.navbar-main').addClass('navbar-transporent');
